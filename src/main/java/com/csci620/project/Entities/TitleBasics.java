@@ -42,7 +42,7 @@ public class TitleBasics {
     private String runtimeMinutes;
 
     @Column(name = "genres")
-    private String genres;
+    private int genres;
 
     public String getTconst() {
         return tconst;
@@ -108,11 +108,11 @@ public class TitleBasics {
         this.runtimeMinutes = runtimeMinutes;
     }
 
-    public String getGenres() {
+    public int getGenres() {
         return genres;
     }
 
-    public void setGenres(String genres) {
+    public void setGenres(int genres) {
         this.genres = genres;
     }
 }
