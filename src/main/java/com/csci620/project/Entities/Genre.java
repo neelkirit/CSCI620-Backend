@@ -21,8 +21,8 @@ public class Genre {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @Column(name = "genre")
-    private String genre;
+    @Column(name = "name")
+    private String name;
 
     public int getId() {
         return id;
@@ -32,11 +32,11 @@ public class Genre {
         this.id = id;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getName() {
+        return name;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setName(String name) {
+        this.name = name;
     }
 }
