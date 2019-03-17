@@ -1,6 +1,5 @@
 package com.csci620.project.Services;
 
-import com.csci620.project.Beans.Movie;
 import com.csci620.project.Beans.MovieQuery;
 import com.csci620.project.Entities.TitleBasics;
 import com.csci620.project.Modals.TitleBasicRepository;
@@ -23,18 +22,15 @@ public class MovieService {
     @Autowired
     TitleBasicRepository titleBasicRepository;
 
-    public Movie fetchByTitle(MovieQuery movieQuery) {
+    public ArrayList<TitleBasics> fetchByTitle(MovieQuery movieQuery) {
+        return titleBasicRepository.findByPrimaryTitle(movieQuery.getName());
+    }
 
-        return null;
+    public ArrayList<TitleBasics> fetchByTitleWithAkas(MovieQuery movieQuery) {
+        return titleBasicRepository.findByPrimaryTitleWithAkas(movieQuery.getName(), movieQuery.getLanguage());
     }
 
     public ArrayList<TitleBasics> fetchAll() {
-//        ArrayList<TitleBasics> movieList = new ArrayList<TitleBasics>();
-//        int itr = 0;
-//        for (TitleBasics titles: titleBasicRepository.findAll())
-//            movieList.add(itr++,titles);
-
-
         return (ArrayList<TitleBasics>) titleBasicRepository.findAll();
     }
 }

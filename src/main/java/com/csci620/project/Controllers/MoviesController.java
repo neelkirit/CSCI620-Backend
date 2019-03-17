@@ -1,14 +1,10 @@
 package com.csci620.project.Controllers;
 
-import com.csci620.project.Beans.Movie;
 import com.csci620.project.Beans.MovieQuery;
 import com.csci620.project.Entities.TitleBasics;
 import com.csci620.project.Services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -35,9 +31,16 @@ public class MoviesController {
     @RequestMapping(value = "/fetchByTitle", method = RequestMethod.POST,
             consumes =
                     "application/json")
-    public Movie fetchByTitle(MovieQuery movieQuery) {
+    public @ResponseBody
+    ArrayList<TitleBasics> fetchByTitle(@RequestBody MovieQuery movieQuery) {
+        return movieService.fetchByTitle(movieQuery);
+    }
 
-
-        return null;
+    @RequestMapping(value = "/fetchByTitleWithAkas", method = RequestMethod.POST,
+            consumes =
+                    "application/json")
+    public @ResponseBody
+    ArrayList<TitleBasics> fetchByTitleWithAkas(@RequestBody MovieQuery movieQuery) {
+        return movieService.fetchByTitleWithAkas(movieQuery);
     }
 }
