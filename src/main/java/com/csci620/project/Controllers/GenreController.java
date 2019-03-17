@@ -8,13 +8,11 @@ package com.csci620.project.Controllers;
  * Revisions:
  */
 
+import com.csci620.project.Beans.GenreQuery;
 import com.csci620.project.Entities.Genre;
 import com.csci620.project.Services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -29,5 +27,13 @@ public class GenreController {
     public @ResponseBody
     ArrayList<Genre> fetchAll() {
         return genreService.fetchAll();
+    }
+
+    @RequestMapping(value = "/findByGenre", method = RequestMethod.POST,
+            consumes =
+                    "application/json")
+    public @ResponseBody
+    ArrayList<Genre> findByGenre(@RequestBody GenreQuery genreQuery) {
+        return genreService.findByGenre(genreQuery);
     }
 }

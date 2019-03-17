@@ -8,6 +8,7 @@ package com.csci620.project.Services;
  * Revisions:
  */
 
+import com.csci620.project.Beans.GenreQuery;
 import com.csci620.project.Entities.Genre;
 import com.csci620.project.Modals.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +26,7 @@ public class GenreService {
         return (ArrayList<Genre>) genreRepository.findAll();
     }
 
+    public ArrayList<Genre> findByGenre(GenreQuery genreQuery) {
+        return genreRepository.findByGenre(genreQuery.getName());
+    }
 }
