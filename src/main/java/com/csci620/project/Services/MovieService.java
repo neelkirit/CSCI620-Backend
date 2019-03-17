@@ -1,6 +1,7 @@
 package com.csci620.project.Services;
 
 import com.csci620.project.Beans.MovieQuery;
+import com.csci620.project.Entities.TitleAkas;
 import com.csci620.project.Entities.TitleBasics;
 import com.csci620.project.Modals.TitleBasicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class MovieService {
         return titleBasicRepository.findByPrimaryTitle(movieQuery.getName());
     }
 
-    public ArrayList<TitleBasics> fetchByTitleWithAkas(MovieQuery movieQuery) {
+    public ArrayList<TitleAkas> fetchByTitleWithAkas(MovieQuery movieQuery) {
         return titleBasicRepository.findByPrimaryTitleWithAkas(movieQuery.getName(), movieQuery.getLanguage());
     }
 

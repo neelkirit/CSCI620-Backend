@@ -1,6 +1,7 @@
 package com.csci620.project.Controllers;
 
 import com.csci620.project.Beans.MovieQuery;
+import com.csci620.project.Entities.TitleAkas;
 import com.csci620.project.Entities.TitleBasics;
 import com.csci620.project.Services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class MoviesController {
             consumes =
                     "application/json")
     public @ResponseBody
-    ArrayList<TitleBasics> fetchByTitleWithAkas(@RequestBody MovieQuery movieQuery) {
+    ArrayList<TitleAkas> fetchByTitleWithAkas(@RequestBody MovieQuery movieQuery) {
         return movieService.fetchByTitleWithAkas(movieQuery);
     }
 }

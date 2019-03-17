@@ -1,5 +1,6 @@
 package com.csci620.project.Modals;
 
+import com.csci620.project.Entities.TitleAkas;
 import com.csci620.project.Entities.TitleBasics;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -23,9 +24,9 @@ public interface TitleBasicRepository extends CrudRepository<TitleBasics, String
     ArrayList<TitleBasics> findByPrimaryTitle(@Param("primaryTitle") String primaryTitle);
 
     @Transactional
-    @Query(value = "select t from TitleAkas t WHERE t.primaryTitle LIKE" +
-            " %:primaryTitle% and t.language = :language")
-    ArrayList<TitleBasics> findByPrimaryTitleWithAkas(@Param("primaryTitle") String primaryTitle, @Param("language") String language);
+    @Query(value = "select t from TitleAkas t WHERE t.title LIKE" +
+            " %:title% and t.language = :language")
+    ArrayList<TitleAkas> findByPrimaryTitleWithAkas(@Param("title") String title, @Param("language") String language);
 
 }
 
