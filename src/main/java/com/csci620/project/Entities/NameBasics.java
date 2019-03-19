@@ -13,19 +13,19 @@ public class NameBasics {
     @Column(name = "nconst", unique = true, nullable = false)
     private String nconst;
 
-    @Column(name = "primaryName")
+    @Column(name = "primary_name")
     private String primaryName;
 
-    @Column(name = "birthYear")
+    @Column(name = "birth_year")
     private int birthYear;
 
-    @Column(name = "deathYear")
+    @Column(name = "death_year")
     private int deathYear;
 
-    @Column(name = "primaryProfession")
+    @Column(name = "primary_profession")
     private String primaryProfession;
 
-    @Column(name = "knownForTitles")
+    @Column(name = "known_for_titles")
     private String knownForTitles;
 
     public String getNconst() {
