@@ -1,8 +1,8 @@
 package com.csci620.project.Controllers;
 
-import com.csci620.project.Beans.MovieQuery;
+import com.csci620.project.Beans.Movie;
 import com.csci620.project.Entities.TitleAkas;
-import com.csci620.project.Entities.TitleBasics;
+import com.csci620.project.Entities.TitleBasicsNormalized;
 import com.csci620.project.Services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,23 +25,40 @@ public class MoviesController {
 
     @RequestMapping(value = "/fetchAll", method = RequestMethod.GET)
     public @ResponseBody
-    ArrayList<TitleBasics> fetchAll() {
+    ArrayList<TitleBasicsNormalized> fetchAll() {
         return movieService.fetchAll();
+    }
+
+    @RequestMapping(value = "/findByMostVoted")
+    public @ResponseBody
+    ArrayList<TitleBasicsNormalized> findByMostVoted() {
+        return movieService.fetchByMostVoted();
     }
 
     @RequestMapping(value = "/fetchByTitle", method = RequestMethod.POST,
             consumes =
                     "application/json")
     public @ResponseBody
-    ArrayList<TitleBasics> fetchByTitle(@RequestBody MovieQuery movieQuery) {
-        return movieService.fetchByTitle(movieQuery);
+    ArrayList<TitleBasicsNormalized> fetchByTitle(@RequestBody Movie movie) {
+        return movieService.fetchByTitle(movie);
     }
 
     @RequestMapping(value = "/fetchByTitleWithAkas", method = RequestMethod.POST,
             consumes =
                     "application/json")
     public @ResponseBody
-    ArrayList<TitleAkas> fetchByTitleWithAkas(@RequestBody MovieQuery movieQuery) {
-        return movieService.fetchByTitleWithAkas(movieQuery);
+    ArrayList<TitleAkas> fetchByTitleWithAkas(@RequestBody Movie movie) {
+        return movieService.fetchByTitleWithAkas(movie);
     }
+
+    @RequestMapping(value = "/findByActor", method = RequestMethod.POST,
+            consumes = "application/json")
+    public @ResponseBody
+    ArrayList<TitleBasicsNormalized> findByActor(@RequestBody Movie movie) {
+        return movieService.fetchByActor(movie.getPersonList().get(0).getName(),
+                movie.getPersonList().get(0).getProfession());
+    }
+
+
+
 }

@@ -1,7 +1,7 @@
 package com.csci620.project.Controllers;
 
-import com.csci620.project.Beans.PersonQuery;
-import com.csci620.project.Entities.NameBasics;
+import com.csci620.project.Beans.Person;
+import com.csci620.project.Entities.NameBasicsNormalized;
 import com.csci620.project.Services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ public class PersonController {
 
     @RequestMapping(value = "/fetchAll", method = RequestMethod.GET)
     public @ResponseBody
-    ArrayList<NameBasics> fetchAll(@RequestBody PersonQuery personQuery) {
+    ArrayList<NameBasicsNormalized> fetchAll(@RequestBody Person person) {
         return personService.fetchAll();
     }
 
@@ -25,7 +25,12 @@ public class PersonController {
             consumes =
                     "application/json")
     public @ResponseBody
-    ArrayList<NameBasics> fetchByName(@RequestBody PersonQuery personQuery) {
-        return personService.fetchByName(personQuery);
+    ArrayList<NameBasicsNormalized> fetchByName(@RequestBody Person person) {
+        return personService.fetchByName(person);
+    }
+
+    @RequestMapping(value = "/fetchBySingleProfession")
+    ArrayList<NameBasicsNormalized> fetchBySingleProfession(@RequestBody Person person) {
+        return null;
     }
 }

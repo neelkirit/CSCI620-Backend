@@ -12,10 +12,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "title_basics_normalized")
-public class TitleBasicsNormalized {
+public class TitleBasicsNormalized implements Serializable {
 
     @Id
     @Column(name = "tconst", unique = true, nullable = false)
@@ -25,7 +26,7 @@ public class TitleBasicsNormalized {
     private String titleType;
 
     @Column(name = "start_year")
-    private String startYear;
+    private int startYear;
 
     @Column(name = "end_year")
     private int endYear;
@@ -37,10 +38,10 @@ public class TitleBasicsNormalized {
     private String primaryTitle;
 
     @Column(name = "is_adult")
-    private String isAdult;
+    private int isAdult;
 
     @Column(name = "runtime_minutes")
-    private String runtimeMinutes;
+    private int runtimeMinutes;
 
     public String getTconst() {
         return tconst;
@@ -58,11 +59,11 @@ public class TitleBasicsNormalized {
         this.titleType = titleType;
     }
 
-    public String getStartYear() {
+    public int getStartYear() {
         return startYear;
     }
 
-    public void setStartYear(String startYear) {
+    public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
 
@@ -90,19 +91,19 @@ public class TitleBasicsNormalized {
         this.primaryTitle = primaryTitle;
     }
 
-    public String getIsAdult() {
+    public int getIsAdult() {
         return isAdult;
     }
 
-    public void setIsAdult(String isAdult) {
+    public void setIsAdult(int isAdult) {
         this.isAdult = isAdult;
     }
 
-    public String getRuntimeMinutes() {
+    public int getRuntimeMinutes() {
         return runtimeMinutes;
     }
 
-    public void setRuntimeMinutes(String runtimeMinutes) {
+    public void setRuntimeMinutes(int runtimeMinutes) {
         this.runtimeMinutes = runtimeMinutes;
     }
 }

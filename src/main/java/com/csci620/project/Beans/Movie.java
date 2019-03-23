@@ -1,15 +1,18 @@
 package com.csci620.project.Beans;
 
+import java.util.ArrayList;
+
 /*
- * MovieQuery.java
+ * Movie.java
  *
  * Version: 1.0
  *
  * Revisions:
  */
-public class MovieQuery {
+public class Movie {
     private String name;
     private String language;
+    private ArrayList<Person> personList;
 
     public String getName() {
         return name;
@@ -27,11 +30,20 @@ public class MovieQuery {
         this.language = language;
     }
 
+    public ArrayList<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(ArrayList<Person> personList) {
+        this.personList = personList;
+    }
+
     @Override
     public String toString() {
-        return "MovieQuery{" +
+        return "Movie{" +
                 "name='" + name + '\'' +
                 ", language='" + language + '\'' +
+                ", personList=" + personList.toString() +
                 '}';
     }
 }

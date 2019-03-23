@@ -8,8 +8,7 @@ package com.csci620.project.Services;
  * Revisions:
  */
 
-import com.csci620.project.Beans.GenreQuery;
-import com.csci620.project.Entities.Genre;
+import com.csci620.project.Beans.Genre;
 import com.csci620.project.Modals.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +21,11 @@ public class GenreService {
     @Autowired
     GenreRepository genreRepository;
 
-    public ArrayList<Genre> fetchAll() {
-        return (ArrayList<Genre>) genreRepository.findAll();
+    public ArrayList<com.csci620.project.Entities.Genre> fetchAll() {
+        return (ArrayList<com.csci620.project.Entities.Genre>) genreRepository.findAll();
     }
 
-    public ArrayList<Genre> findByGenre(GenreQuery genreQuery) {
-        return genreRepository.findByGenre(genreQuery.getName());
+    public ArrayList<com.csci620.project.Entities.Genre> findByGenre(Genre genre) {
+        return genreRepository.findByGenre(genre.getName());
     }
 }

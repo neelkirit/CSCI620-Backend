@@ -12,10 +12,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "name_basics_normalized")
-public class NameBasicsNormalized {
+public class NameBasicsNormalized implements Serializable {
 
     @Id
     @Column(name = "nconst", unique = true, nullable = false)

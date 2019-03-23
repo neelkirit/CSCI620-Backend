@@ -1,6 +1,6 @@
 package com.csci620.project.Beans;
 
-public class PersonQuery {
+public class Genre {
     private String name;
 
     public String getName() {
@@ -13,7 +13,7 @@ public class PersonQuery {
 
     @Override
     public String toString() {
-        return "PersonQuery{" +
+        return "Genre{" +
                 "name='" + name + '\'' +
                 '}';
     }
