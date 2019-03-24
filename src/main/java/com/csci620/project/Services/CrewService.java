@@ -1,12 +1,15 @@
 package com.csci620.project.Services;
 
+import com.csci620.project.Beans.CrewDetails;
+import com.csci620.project.Beans.CrewMovieCount;
+import com.csci620.project.Beans.CrewRatings;
 import com.csci620.project.Entities.TitleCrew;
 import com.csci620.project.Modals.CrewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.List;
 
 /*
  * CrewService.java
@@ -24,18 +27,69 @@ public class CrewService {
         return (ArrayList<TitleCrew>) crewRepository.findAll();
     }
 
-    public ArrayList<Object[]> fetchByProfession(String name, String category) {
-        ArrayList<Object[]> titleCrewList = crewRepository.findByProfession(name, category);
-        return titleCrewList;
+    public ArrayList<CrewDetails> fetchByProfession(String name,
+                                                    String category,
+                                                    int startLimit, int endLimit) {
+        return mapObjectToCrewDetails(crewRepository.findByProfession(name,
+                category, startLimit, endLimit));
     }
 
-    public ArrayList<Object[]> fetchByNumOfMovies(String name, String category, Integer cnt) {
-        ArrayList<Object[]> titleCrewList = crewRepository.findByNumOfMovies(name, category, cnt);
-        return titleCrewList;
+    public ArrayList<CrewMovieCount> fetchByNumOfMovies(String name,
+                                                        String category,
+                                                        int count,
+                                                        int startLimit,
+                                                        int endLimit) {
+        return mapObjectToCrewMovieCount(crewRepository.findByNumOfMovies(name,
+                category, count, startLimit, endLimit));
     }
 
-    public ArrayList<Object[]> fetchByCrewRatings(String name, Integer start, Integer end) {
-        ArrayList<Object[]> titleCrewList = crewRepository.findByCrewRatings(name, start, end);
-        return titleCrewList;
+    public ArrayList<CrewRatings> fetchByCrewRatings(String name, int ratingLow,
+                                                     int ratingHigh,
+                                                     int startLimit,
+                                                     int endLimit) {
+        return mapObjectToCrewRatings(crewRepository.findByCrewRatings(name,
+                ratingLow, ratingHigh, startLimit, endLimit));
+    }
+
+    private ArrayList<CrewMovieCount> mapObjectToCrewMovieCount(ArrayList<Object[]> crewByNumOfMovies) {
+        ArrayList<CrewMovieCount> crewMovieCountArrayList = new ArrayList<>();
+        for (Object[] crewByMovie : crewByNumOfMovies) {
+            CrewMovieCount crewMovieCount = new CrewMovieCount();
+            crewMovieCount.setPrimaryName((String) crewByMovie[0]);
+            crewMovieCount.setCount((BigInteger) crewByMovie[1]);
+            crewMovieCountArrayList.add(crewMovieCount);
+        }
+        return crewMovieCountArrayList;
+    }
+
+    private ArrayList<CrewRatings> mapObjectToCrewRatings(ArrayList<Object[]> titleCrewList) {
+        ArrayList<CrewRatings> crewRatingsArrayList = new ArrayList<>();
+
+        for (Object[] titleCrew : titleCrewList) {
+            CrewRatings crewRatings = new CrewRatings();
+            crewRatings.setPrimaryName((String) titleCrew[0]);
+            crewRatings.setPrimaryTitle((String) titleCrew[1]);
+            crewRatings.setAverageRating((float) titleCrew[2]);
+            crewRatingsArrayList.add(crewRatings);
+        }
+        return crewRatingsArrayList;
+    }
+
+    private ArrayList<CrewDetails> mapObjectToCrewDetails(ArrayList<Object[]> titleCrewList) {
+        ArrayList<CrewDetails> crewDetailsArrayList = new ArrayList<>();
+
+        for (Object[] titleCrew : titleCrewList) {
+            CrewDetails crewDetails = new CrewDetails();
+            crewDetails.setPrimaryName((String) titleCrew[0]);
+            crewDetails.setPrimaryTitle((String) titleCrew[1]);
+            crewDetails.setTconst((String) titleCrew[2]);
+            crewDetails.setOrdering((int) titleCrew[3]);
+            crewDetails.setNconst((String) titleCrew[4]);
+            crewDetails.setCategory((String) titleCrew[5]);
+            crewDetails.setJob((String) titleCrew[6]);
+            crewDetails.setCharacters((String) titleCrew[7]);
+            crewDetailsArrayList.add(crewDetails);
+        }
+        return crewDetailsArrayList;
     }
 }

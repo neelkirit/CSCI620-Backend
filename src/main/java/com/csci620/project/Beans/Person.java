@@ -3,8 +3,10 @@ package com.csci620.project.Beans;
 public class Person {
     private String name;
     private String profession;
-    private Integer cnt;
+    private Integer count;
     private String rating;
+    private int startLimit;
+    private int endLimit;
 
     public String getName() {
         return name;
@@ -22,12 +24,12 @@ public class Person {
         this.profession = profession;
     }
 
-    public Integer getCnt() {
-        return cnt;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setCnt(Integer cnt) {
-        this.cnt = cnt;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public String getRating() {
@@ -38,12 +40,28 @@ public class Person {
         this.rating = rating;
     }
 
+    public int getStartLimit() {
+        return startLimit;
+    }
+
+    public void setStartLimit(int startLimit) {
+        this.startLimit = startLimit;
+    }
+
+    public int getEndLimit() {
+        return endLimit;
+    }
+
+    public void setEndLimit(int endLimit) {
+        this.endLimit = endLimit;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", profession='" + profession + '\'' +
-                ", cnt=" + cnt +
+                ", count=" + count +
                 ", rating=" + rating +
                 '}';
     }

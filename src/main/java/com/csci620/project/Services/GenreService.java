@@ -29,7 +29,21 @@ public class GenreService {
         return genreRepository.findByGenre(genre.getName());
     }
 
-    public ArrayList<Object[]> findByTopRating(String genre) {
-        return genreRepository.findByTopRating(genre);
+    public ArrayList<Genre> findByTopRating(String genre, int startLimit,
+                                            int endLimt) {
+        return mapObjectToGenre(genreRepository.findByTopRating(genre,
+                startLimit, endLimt));
+    }
+
+    private ArrayList<Genre> mapObjectToGenre(ArrayList<Object[]> genreRatings) {
+        ArrayList<Genre> genreArrayList = new ArrayList<>();
+        for (Object[] genreRating : genreRatings) {
+            Genre genre = new Genre();
+            genre.setName((String) genreRating[0]);
+            genre.setAverageRating((float) genreRating[1]);
+            genreArrayList.add(genre);
+        }
+
+        return genreArrayList;
     }
 }

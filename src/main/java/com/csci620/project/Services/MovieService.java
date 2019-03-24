@@ -37,14 +37,18 @@ public class MovieService {
     }
 
     public ArrayList<TitleBasicsNormalized> fetchByPerson(String name,
-                                                          String profession) {
+                                                          String profession,
+                                                          int startLimit,
+                                                          int endLimit) {
         return mapObjectToTitleBasicsNormalized(
-                titleBasicRepository.findByPerson(name, profession));
+                titleBasicRepository.findByPerson(name, profession,
+                        startLimit, endLimit));
     }
 
-    public ArrayList<TitleBasicsNormalized> fetchByMostVoted() {
+    public ArrayList<TitleBasicsNormalized> fetchByMostVoted(Movie movie) {
         return mapObjectToTitleBasicsNormalized(
-                titleBasicRepository.findByMostVoted());
+                titleBasicRepository.findByMostVoted(movie.getStartLimit(),
+                        movie.getEndLimit()));
     }
 
 

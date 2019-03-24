@@ -13,6 +13,8 @@ public class Movie {
     private String name;
     private String language;
     private ArrayList<Person> personList;
+    private int startLimit;
+    private int endLimit;
 
     public String getName() {
         return name;
@@ -38,12 +40,30 @@ public class Movie {
         this.personList = personList;
     }
 
+    public int getStartLimit() {
+        return startLimit;
+    }
+
+    public void setStartLimit(int startLimit) {
+        this.startLimit = startLimit;
+    }
+
+    public int getEndLimit() {
+        return endLimit;
+    }
+
+    public void setEndLimit(int endLimit) {
+        this.endLimit = endLimit;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
                 "name='" + name + '\'' +
                 ", language='" + language + '\'' +
-                ", personList=" + personList.toString() +
+                ", personList=" + personList +
+                ", startLimit=" + startLimit +
+                ", endLimit=" + endLimit +
                 '}';
     }
 }

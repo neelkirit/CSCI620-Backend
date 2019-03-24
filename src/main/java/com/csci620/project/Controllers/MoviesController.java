@@ -29,15 +29,15 @@ public class MoviesController {
         return movieService.fetchAll();
     }
 
-    @RequestMapping(value = "/findByMostVoted")
+    @RequestMapping(value = "/findByMostVoted", method = RequestMethod.POST,
+            consumes = "application/json")
     public @ResponseBody
-    ArrayList<TitleBasicsNormalized> findByMostVoted() {
-        return movieService.fetchByMostVoted();
+    ArrayList<TitleBasicsNormalized> findByMostVoted(@RequestBody Movie movie) {
+        return movieService.fetchByMostVoted(movie);
     }
 
     @RequestMapping(value = "/fetchByTitle", method = RequestMethod.POST,
-            consumes =
-                    "application/json")
+            consumes = "application/json")
     public @ResponseBody
     ArrayList<TitleBasicsNormalized> fetchByTitle(@RequestBody Movie movie) {
         return movieService.fetchByTitle(movie);
@@ -56,7 +56,9 @@ public class MoviesController {
     public @ResponseBody
     ArrayList<TitleBasicsNormalized> findByPerson(@RequestBody Movie movie) {
         return movieService.fetchByPerson(movie.getPersonList().get(0).getName(),
-                movie.getPersonList().get(0).getProfession());
+                movie.getPersonList().get(0).getProfession(),
+                movie.getStartLimit(),
+                movie.getEndLimit());
     }
 
 

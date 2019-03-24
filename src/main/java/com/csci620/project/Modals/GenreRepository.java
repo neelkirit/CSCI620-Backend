@@ -22,8 +22,11 @@ public interface GenreRepository extends CrudRepository<Genre, String> {
 
     @Transactional
     @Query(value = "select g.genres, tr.average_rating from title_genre_normalized g, title_ratings tr, Title_Basics_Normalized t " +
-            "where t.tconst = tr.tconst and tr.tconst = g.tconst and g.genres = :name order by tr.average_rating desc"
+            "where t.tconst = tr.tconst and tr.tconst = g.tconst and g.genres" +
+            " = :name order by tr.average_rating desc LIMIT :startLimit , " +
+            ":endLimit"
             ,nativeQuery = true)
-    ArrayList<Object[]> findByTopRating(@Param("name") String name);
+    ArrayList<Object[]> findByTopRating(@Param("name") String name, @Param(
+            "startLimit") int startLimit, @Param("endLimit") int endLimit);
 
 }

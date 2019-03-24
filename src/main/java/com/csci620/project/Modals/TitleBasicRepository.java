@@ -39,18 +39,24 @@ public interface TitleBasicRepository extends CrudRepository<TitleBasicsNormaliz
             "and tpr.nconst = nbn.nconst " +
             "      and nbn.nconst = np.nconst " +
             "      and np.primary_profession LIKE %:profession%" +
-            "      and nbn.primary_name LIKE %:primaryName%",
+            "      and nbn.primary_name LIKE %:primaryName%  " +
+            "      ORDER BY t.tconst LIMIT " +
+            "       :startLimit, :endLimit",
             nativeQuery = true)
     List<Object[]> findByPerson(@Param("primaryName") String primaryName,
-                                @Param("profession") String profession);
+                                @Param("profession") String profession,
+                                @Param("startLimit") int startLimit,
+                                @Param("endLimit") int endLimit);
 
     @Transactional
     @Query(value = "" +
             "SELECT tbn.* " +
             "FROM Title_Basics_Normalized as tbn, title_ratings as tr WHERE " +
             "tbn.tconst = tr.tconst  " +
-            "ORDER BY tr.num_votes  DESC",
+            "ORDER BY tr.num_votes  DESC" +
+            " LIMIT :startLimit, :endLimit",
             nativeQuery = true)
-    List<Object[]> findByMostVoted();
+    List<Object[]> findByMostVoted(@Param("startLimit") int startLimit,
+                                   @Param("endLimit") int endLimit);
 }
 

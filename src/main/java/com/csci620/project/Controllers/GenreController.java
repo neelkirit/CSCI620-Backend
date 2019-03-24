@@ -40,7 +40,8 @@ public class GenreController {
             consumes =
                     "application/json")
     public @ResponseBody
-    ArrayList<Object[]> findByTopRating(@RequestBody Genre genre) {
-        return genreService.findByTopRating(genre.getName());
+    ArrayList<Genre> findByTopRating(@RequestBody Genre genre) {
+        return genreService.findByTopRating(genre.getName(),
+                genre.getStartLimit(), genre.getEndLimit());
     }
 }
