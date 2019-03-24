@@ -28,4 +28,8 @@ public class GenreService {
     public ArrayList<com.csci620.project.Entities.Genre> findByGenre(Genre genre) {
         return genreRepository.findByGenre(genre.getName());
     }
+
+    public ArrayList<Object[]> findByTopRating(String genre) {
+        return genreRepository.findByTopRating(genre);
+    }
 }

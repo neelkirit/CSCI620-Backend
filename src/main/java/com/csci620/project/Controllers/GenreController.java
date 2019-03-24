@@ -35,4 +35,12 @@ public class GenreController {
     ArrayList<com.csci620.project.Entities.Genre> findByGenre(@RequestBody Genre genre) {
         return genreService.findByGenre(genre);
     }
+
+    @RequestMapping(value = "/findByTopRating", method = RequestMethod.POST,
+            consumes =
+                    "application/json")
+    public @ResponseBody
+    ArrayList<Object[]> findByTopRating(@RequestBody Genre genre) {
+        return genreService.findByTopRating(genre.getName());
+    }
 }
