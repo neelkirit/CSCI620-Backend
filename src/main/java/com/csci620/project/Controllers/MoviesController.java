@@ -51,11 +51,11 @@ public class MoviesController {
         return movieService.fetchByTitleWithAkas(movie);
     }
 
-    @RequestMapping(value = "/findByActor", method = RequestMethod.POST,
+    @RequestMapping(value = "/findByPerson", method = RequestMethod.POST,
             consumes = "application/json")
     public @ResponseBody
-    ArrayList<TitleBasicsNormalized> findByActor(@RequestBody Movie movie) {
-        return movieService.fetchByActor(movie.getPersonList().get(0).getName(),
+    ArrayList<TitleBasicsNormalized> findByPerson(@RequestBody Movie movie) {
+        return movieService.fetchByPerson(movie.getPersonList().get(0).getName(),
                 movie.getPersonList().get(0).getProfession());
     }
 

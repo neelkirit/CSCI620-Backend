@@ -41,8 +41,8 @@ public interface TitleBasicRepository extends CrudRepository<TitleBasicsNormaliz
             "      and np.primary_profession LIKE %:profession%" +
             "      and nbn.primary_name LIKE %:primaryName%",
             nativeQuery = true)
-    List<Object[]> findByActor(@Param("primaryName") String primaryName,
-                               @Param("profession") String profession);
+    List<Object[]> findByPerson(@Param("primaryName") String primaryName,
+                                @Param("profession") String profession);
 
     @Transactional
     @Query(value = "" +

@@ -36,10 +36,10 @@ public class MovieService {
         return (ArrayList<TitleBasicsNormalized>) titleBasicRepository.findAll();
     }
 
-    public ArrayList<TitleBasicsNormalized> fetchByActor(String name,
-                                                         String profession) {
+    public ArrayList<TitleBasicsNormalized> fetchByPerson(String name,
+                                                          String profession) {
         return mapObjectToTitleBasicsNormalized(
-                titleBasicRepository.findByActor(name, profession));
+                titleBasicRepository.findByPerson(name, profession));
     }
 
     public ArrayList<TitleBasicsNormalized> fetchByMostVoted() {
