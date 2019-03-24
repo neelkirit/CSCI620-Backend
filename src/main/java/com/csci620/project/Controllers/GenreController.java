@@ -32,7 +32,7 @@ public class GenreController {
             consumes =
                     "application/json")
     public @ResponseBody
-    ArrayList<com.csci620.project.Entities.Genre> findByGenre(@RequestBody Genre genre) {
+    ArrayList<Genre> findByGenre(@RequestBody Genre genre) {
         return genreService.findByGenre(genre);
     }
 

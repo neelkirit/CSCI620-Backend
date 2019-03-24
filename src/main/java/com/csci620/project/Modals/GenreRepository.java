@@ -17,8 +17,12 @@ import java.util.ArrayList;
  */
 public interface GenreRepository extends CrudRepository<Genre, String> {
     @Transactional
-    @Query(value = "select g from Genre g WHERE g.name = :name")
-    ArrayList<Genre> findByGenre(@Param("name") String name);
+    @Query(value = "select g.genres from title_genre_normalized g WHERE g" +
+            ".genres LIKE %:name% LIMIT :startLimit , :endLimit", nativeQuery =
+            true)
+    ArrayList<Object[]> findByGenre(@Param("name") String name,
+                                    @Param("startLimit") int startLimit,
+                                    @Param("endLimit") int endLimit);
 
     @Transactional
     @Query(value = "select g.genres, tr.average_rating from title_genre_normalized g, title_ratings tr, Title_Basics_Normalized t " +

@@ -25,14 +25,15 @@ public class GenreService {
         return (ArrayList<com.csci620.project.Entities.Genre>) genreRepository.findAll();
     }
 
-    public ArrayList<com.csci620.project.Entities.Genre> findByGenre(Genre genre) {
-        return genreRepository.findByGenre(genre.getName());
+    public ArrayList<Genre> findByGenre(Genre genre) {
+        return mapObjectToGenre(genreRepository.findByGenre(genre.getName(),
+                genre.getStartLimit(), genre.getEndLimit()));
     }
 
     public ArrayList<Genre> findByTopRating(String genre, int startLimit,
-                                            int endLimt) {
+                                            int endLimit) {
         return mapObjectToGenre(genreRepository.findByTopRating(genre,
-                startLimit, endLimt));
+                startLimit, endLimit));
     }
 
     private ArrayList<Genre> mapObjectToGenre(ArrayList<Object[]> genreRatings) {
@@ -43,7 +44,7 @@ public class GenreService {
             genre.setAverageRating((float) genreRating[1]);
             genreArrayList.add(genre);
         }
-
         return genreArrayList;
     }
+
 }
